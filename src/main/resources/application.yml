@@ -1,0 +1,24 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /ecommerce-poc/v1 #rest/v1/
+
+spring:
+  application:
+    name: ecommerce-poc
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce_poc
+    username: root
+    password: password
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+    show-sql: true
+
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  show-sql: true
+
+logging.level.org.springframework.web: DEBUG
+logging.level.org.hibernate: ERROR
