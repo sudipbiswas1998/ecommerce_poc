@@ -1,13 +1,15 @@
 package com.sudip.ecommerce_poc.service;
 
 import com.sudip.ecommerce_poc.entity.User;
+import com.sudip.ecommerce_poc.entity.UserAddress;
+import com.sudip.ecommerce_poc.entity.UserAddressIds;
+import com.sudip.ecommerce_poc.repository.UserAddressRepo;
 import com.sudip.ecommerce_poc.repository.UserRepo;
 import com.sudip.ecommerce_poc.util.ResponseUtils;
 import com.sudip.ecommerce_poc.vo.UserVo;
 import com.sudip.ecommerce_poc.vo.response.ReasonCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private UserAddressRepo userAddressRepo;
 
     public Map<String, Object> saveUser(UserVo userVo) {
         log.info("in saveUser()");
@@ -29,6 +33,14 @@ public class UserService {
             user.setFirstName(userVo.getFirstName());
             user.setLastName(userVo.getLastName());
             userRepo.save(user);
+
+            UserAddressIds userAddressIds = new UserAddressIds();
+            userAddressIds.setUserId(user.getId());
+            userAddressIds.setAddress(userVo.getAddress());
+            UserAddress userAddress = new UserAddress();
+            userAddress.setUserAddressIds(userAddressIds);
+            userAddressRepo.save(userAddress);
+
             return ResponseUtils.successResponse(user);
         }else {
             log.info("User already present");

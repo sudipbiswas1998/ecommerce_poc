@@ -17,8 +17,6 @@ import java.time.LocalDateTime;
 public class UserAddress {
     @EmbeddedId
     private UserAddressIds userAddressIds;
-    @Column(name = "id")
-    private Integer id;
     @Column(name = "created_time")
     @CreationTimestamp
     private LocalDateTime createdTime;

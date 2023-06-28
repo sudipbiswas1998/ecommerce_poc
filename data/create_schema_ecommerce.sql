@@ -13,13 +13,12 @@ CREATE TABLE `user_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_address`(
-    `id` int NOT NULL AUTO_INCREMENT,
     `user_id` int NOT NULL,
     `address` varchar(255) NOT NULL,
     `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY(`user_id`, `user_address`),
-    key `by_id` (`id`)
+    key `by_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `products` (
