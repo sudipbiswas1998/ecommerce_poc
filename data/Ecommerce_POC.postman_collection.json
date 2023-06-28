@@ -1,0 +1,588 @@
+{
+	"info": {
+		"_postman_id": "9161c1c9-7805-42be-ad3c-2681d5adc11f",
+		"name": "Ecommerce_POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18824695"
+	},
+	"item": [
+		{
+			"name": "save_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Sudip\",\n    \"lastName\": \"Biswas\",\n    \"mobileNo\": \"7059501960\",\n    \"email\": \"sudipbiswas322@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/ecommerce-poc/v1/user/save"
+			},
+			"response": [
+				{
+					"name": "failure",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Sudip\",\n    \"lastName\": \"Biswas\",\n    \"mobileNo\": \"7059501960\",\n    \"email\": \"sudipbiswas322@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/ecommerce-poc/v1/user/save"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 27 Jun 2023 11:56:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"fail\",\n    \"reason\": {\n        \"reason_code\": \"ALREADY_PRESENT\",\n        \"reason_eng\": \"Duplicate registration\"\n    },\n    \"response_time\": \"2023-06-27 17:26:14\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Sudip\",\n    \"lastName\": \"Biswas\",\n    \"mobileNo\": \"7059501960\",\n    \"email\": \"sudipbiswas322@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/ecommerce-poc/v1/user/save"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 27 Jun 2023 12:09:11 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"id\": 1,\n        \"email\": \"sudipbiswas322@gmail.com\",\n        \"mobileNo\": \"7059501960\",\n        \"firstName\": \"Sudip\",\n        \"lastName\": \"Biswas\",\n        \"createdTime\": \"2023-06-27T17:39:11.924926\",\n        \"updatedTime\": \"2023-06-27T17:39:11.925335\"\n    },\n    \"response_time\": \"2023-06-27 17:39:11\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get_products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ecommerce-poc/v1/product/get_products?category=Electronics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ecommerce-poc",
+						"v1",
+						"product",
+						"get_products"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "Electronics"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "All",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?catagory=All",
+							"query": [
+								{
+									"key": "catagory",
+									"value": "All"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"{catagory}\": [\n            {\n                \"id\": 1,\n                \"name\": \"{product name}\",\n                \"title\": \"{product title}\",\n                \"price\": \"{product price}\",\n                \"image\": \"{image url}\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"{product name}\",\n                \"title\": \"{product title}\",\n                \"price\": \"{product price}\",\n                \"image\": \"{image url}\"\n            }\n        ],\n        \"{catagory 2}\": [\n            {\n                \"id\": 1,\n                \"name\": \"{product name}\",\n                \"title\": \"{product title}\",\n                \"price\": \"{product price}\",\n                \"image\": \"{image url}\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"{product name}\",\n                \"title\": \"{product title}\",\n                \"price\": \"{product price}\",\n                \"image\": \"{image url}\"\n            }\n        ]\n    },\n    \"response_time\": \"2023-06-27 17:39:11\"\n}"
+				},
+				{
+					"name": "Category",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ecommerce-poc/v1/product/get_products?catagory=All",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ecommerce-poc",
+								"v1",
+								"product",
+								"get_products"
+							],
+							"query": [
+								{
+									"key": "catagory",
+									"value": "All"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"{catagory}\": [\n            {\n                \"id\": 1,\n                \"name\": \"{product name}\",\n                \"title\": \"{product title}\",\n                \"price\": \"{product price}\",\n                \"image\": \"{image url}\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"{product name}\",\n                \"title\": \"{product title}\",\n                \"price\": \"{product price}\",\n                \"image\": \"{image url}\"\n            }\n        ]\n    },\n    \"response_time\": \"2023-06-27 17:39:11\"\n}"
+				}
+			]
+		},
+		{
+			"name": "confirm_order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 1,\n    \"productId\" : 4,\n    \"userAddress\" : \"Gothivali Village\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/ecommerce-poc/v1/order/confirm"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"productId\" : 2,\n    \"userAddress\" : \"Gothivali Village\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/ecommerce-poc/v1/order/confirm"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 06:24:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"id\": 1,\n        \"userId\": 1,\n        \"productId\": 2,\n        \"userAddress\": \"Gothivali Village\",\n        \"createdTime\": \"2023-06-28T11:54:39.535214\",\n        \"updatedTime\": \"2023-06-28T11:54:39.535245\"\n    },\n    \"response_time\": \"2023-06-28 11:54:39\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get_user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "userId",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/ecommerce-poc/v1/user/get_user"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "userId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/ecommerce-poc/v1/user/get_user"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 27 Jun 2023 13:11:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"id\": 1,\n        \"email\": \"sudipbiswas322@gmail.com\",\n        \"mobileNo\": \"7059501960\",\n        \"firstName\": \"Sudip\",\n        \"lastName\": \"Biswas\",\n        \"createdTime\": \"2023-06-27T17:39:12\",\n        \"updatedTime\": \"2023-06-27T17:39:12\"\n    },\n    \"response_time\": \"2023-06-27 18:41:36\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get_order_by_id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/ecommerce-poc/v1/order/get_by_id?order_id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ecommerce-poc",
+						"v1",
+						"order",
+						"get_by_id"
+					],
+					"query": [
+						{
+							"key": "order_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ecommerce-poc/v1/order/get_by_id?order_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ecommerce-poc",
+								"v1",
+								"order",
+								"get_by_id"
+							],
+							"query": [
+								{
+									"key": "order_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 06:25:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"id\": 1,\n        \"userId\": 1,\n        \"productId\": 2,\n        \"userAddress\": \"Gothivali Village\",\n        \"products\": [\n            {\n                \"id\": 2,\n                \"category\": \"Clothing\",\n                \"productName\": \"T-Shirt\",\n                \"productTitle\": \"T-Shirt - Clothing\",\n                \"productImage\": \"tshirt.jpg\",\n                \"productPrice\": \"29.99\",\n                \"createdTime\": \"2023-06-27T16:07:56\",\n                \"updatedTime\": \"2023-06-27T16:07:56\"\n            }\n        ]\n    },\n    \"response_time\": \"2023-06-28 11:55:49\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get_address",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/ecommerce-poc/v1/address/get_address"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/ecommerce-poc/v1/address/get_address"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 07:07:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": [\n        \"Ghansoli, Gothivali Village\",\n        \"Halisahar, Nabanagar\"\n    ],\n    \"response_time\": \"2023-06-28 12:37:10\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add_address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"Gothivali, Ghansoli\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/ecommerce-poc/v1/address/add_address"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Gothivali, Ghansoli\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/ecommerce-poc/v1/address/add_address"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 28 Jun 2023 07:21:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"result\": {\n        \"userAddressIds\": {\n            \"userId\": 1,\n            \"address\": \"Gothivali, Ghansoli\"\n        },\n        \"id\": null,\n        \"createdTime\": null,\n        \"updatedTime\": null\n    },\n    \"response_time\": \"2023-06-28 12:51:11\"\n}"
+				}
+			]
+		}
+	]
+}
