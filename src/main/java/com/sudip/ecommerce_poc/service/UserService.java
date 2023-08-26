@@ -25,6 +25,10 @@ public class UserService {
 
     public Map<String, Object> saveUser(UserVo userVo) {
         log.info("in saveUser()");
+        if(userVo.getMobileNo().isEmpty() || userVo.getAddress().isEmpty() ||
+                userVo.getEmail().isEmpty() || userVo.getFirstName().isEmpty() || userVo.getLastName().isEmpty()){
+            return ResponseUtils.failureResponse("Details are mandatory", ReasonCode.INVALID_PARAMETER.value());
+        }
         Optional<User> userOptional = userRepo.findByMobileNo(userVo.getMobileNo());
         if(userOptional.isEmpty()){
             User user = new User();
