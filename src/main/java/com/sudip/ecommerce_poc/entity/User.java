@@ -1,6 +1,7 @@
 package com.sudip.ecommerce_poc.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,11 +29,14 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "password")
+    private String password;
     @Column(name = "created_time")
     @CreationTimestamp
+    @JsonIgnore
     private LocalDateTime createdTime;
     @Column(name = "updated_time")
     @UpdateTimestamp
+    @JsonIgnore
     private LocalDateTime updatedTime;
-
 }

@@ -4,12 +4,15 @@ CREATE TABLE `user_table` (
     `mobile_no` varchar(11) NOT NULL,
     `first_name` varchar(255) NOT NULL,
     `last_name` varchar(255) DEFAULT NULL,
+    `password` varchar(45) NOT NULL,
     `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     UNIQUE KEY `mobile_no_UNIQUE` (`mobile_no`),
     UNIQUE KEY `email_UNIQUE` (`email`),
-    KEY `by_id` (`id`)
+    KEY `by_id` (`id`),
+    KEY `by_email` (`email`),
+    KEY `by_mobile_no_and_password` (`mobile_no`, `password`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_address`(

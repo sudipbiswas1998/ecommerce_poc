@@ -22,3 +22,6 @@ spring:
 
 logging.level.org.springframework.web: DEBUG
 logging.level.org.hibernate: ERROR
+
+secret:
+  key: k5iJs87mae9xyeruFlao6A==

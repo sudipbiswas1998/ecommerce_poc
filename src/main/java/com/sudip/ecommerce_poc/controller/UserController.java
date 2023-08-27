@@ -5,10 +5,12 @@ import com.sudip.ecommerce_poc.util.BLUtil;
 import com.sudip.ecommerce_poc.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -30,6 +32,13 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> getUser(@RequestHeader("userId") Integer userId){
         log.info("in getUser controller");
         Map<String, Object> response = userService.getUser(userId);
+        return sendResponse(response);
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<Map<String, Object>> login(HttpEntity<Map<String, Object>> httpEntity){
+        log.info("in login controller");
+        Map<String, Object> response = userService.login(httpEntity.getBody());
         return sendResponse(response);
     }
 

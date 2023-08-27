@@ -5,6 +5,7 @@ import com.sudip.ecommerce_poc.entity.UserAddress;
 import com.sudip.ecommerce_poc.entity.UserAddressIds;
 import com.sudip.ecommerce_poc.repository.UserAddressRepo;
 import com.sudip.ecommerce_poc.repository.UserRepo;
+import com.sudip.ecommerce_poc.util.EncryptDecryptUtil;
 import com.sudip.ecommerce_poc.util.ResponseUtils;
 import com.sudip.ecommerce_poc.vo.UserVo;
 import com.sudip.ecommerce_poc.vo.response.ReasonCode;
@@ -22,6 +23,8 @@ public class UserService {
     private UserRepo userRepo;
     @Autowired
     private UserAddressRepo userAddressRepo;
+    @Autowired
+    private EncryptDecryptUtil encryptDecryptUtil;
 
     public Map<String, Object> saveUser(UserVo userVo) {
         log.info("in saveUser()");
@@ -36,6 +39,7 @@ public class UserService {
             user.setMobileNo(userVo.getMobileNo());
             user.setFirstName(userVo.getFirstName());
             user.setLastName(userVo.getLastName());
+            user.setPassword(encryptDecryptUtil.encryptPII(userVo.getPassword()));
             userRepo.save(user);
 
             UserAddressIds userAddressIds = new UserAddressIds();
@@ -47,7 +51,7 @@ public class UserService {
 
             return ResponseUtils.successResponse(user);
         }else {
-            log.info("User already present");
+            log.error("User already present");
             return ResponseUtils.failureResponse("Duplicate registration", ReasonCode.ALREADY_PRESENT.value());
         }
     }
@@ -58,7 +62,20 @@ public class UserService {
         if(userOptional.isPresent()){
             return ResponseUtils.successResponse(userOptional.get());
         }else {
-            log.info("User not present with userId {}", userId);
+            log.error("User not present with userId {}", userId);
+            return ResponseUtils.failureResponse("User not present", ReasonCode.NON_EXISTENT_CUSTOMER_ID.value());
+        }
+    }
+
+    public Map<String, Object> login(Map<String, Object> body) {
+        String userMobile = String.valueOf(body.get("user"));
+        String password = String.valueOf(body.get("password"));
+        Optional<User> userOptional = userRepo.findByMobileNoAndPassword(userMobile, encryptDecryptUtil.encryptPII(password));
+        if (userOptional.isPresent()){
+            log.info("user present");
+            return ResponseUtils.successResponse(userOptional.get());
+        }else {
+            log.error("User not present with mobile no {}", userMobile);
             return ResponseUtils.failureResponse("User not present", ReasonCode.NON_EXISTENT_CUSTOMER_ID.value());
         }
     }
