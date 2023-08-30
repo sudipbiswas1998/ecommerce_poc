@@ -36,9 +36,9 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(HttpEntity<Map<String, Object>> httpEntity){
+    public ResponseEntity<Map<String, Object>> login(@RequestParam("user") String mobileNo, @RequestParam("password") String password){
         log.info("in login controller");
-        Map<String, Object> response = userService.login(httpEntity.getBody());
+        Map<String, Object> response = userService.login(mobileNo, password);
         return sendResponse(response);
     }
 
